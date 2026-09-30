@@ -20,6 +20,8 @@ interface Store {
   setProfile: (p: UserProfile) => void;
   mealDialogOpen: boolean;
   setMealDialogOpen: (o: boolean) => void;
+  prefillFoodId?: string;
+  openMeal: (foodId?: string) => void;
   workoutDialogOpen: boolean;
   setWorkoutDialogOpen: (o: boolean) => void;
 }
@@ -36,6 +38,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<UserProfile>({ name: "Devansh", age: 26, weightKg: 72, heightCm: 175, activity: "Moderate", goal: "Muscle Gain" });
   const [mealDialogOpen, setMealDialogOpen] = useState(false);
   const [workoutDialogOpen, setWorkoutDialogOpen] = useState(false);
+  const [prefillFoodId, setPrefill] = useState<string>();
 
   const value: Store = {
     selectedDate, setSelectedDate,
@@ -49,7 +52,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     water,
     addWater: (ml) => setWater((p) => ({ ...p, [selectedDate]: (p[selectedDate] ?? 0) + ml })),
     targets, setTargets, profile, setProfile,
-    mealDialogOpen, setMealDialogOpen, workoutDialogOpen, setWorkoutDialogOpen,
+    mealDialogOpen, setMealDialogOpen, prefillFoodId,
+    openMeal: (f) => { setPrefill(f); setMealDialogOpen(true); }, workoutDialogOpen, setWorkoutDialogOpen,
   };
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -54,7 +54,7 @@ function Brand({ collapsed }: { collapsed?: boolean }) {
 export function AppShell({ children }: { children: ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { selectedDate, setSelectedDate, setMealDialogOpen, setWorkoutDialogOpen, addWater, profile } = useStore();
+  const { selectedDate, setSelectedDate, openMeal, setWorkoutDialogOpen, addWater, profile } = useStore();
 
   return (
     <div className="dark flex min-h-screen bg-background text-foreground">
@@ -93,7 +93,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 <Button className="gap-1.5"><Plus className="size-4" /> Quick Log</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="dark">
-                <DropdownMenuItem onClick={() => setMealDialogOpen(true)}><UtensilsCrossed className="mr-2 size-4" />Log meal</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => openMeal()}><UtensilsCrossed className="mr-2 size-4" />Log meal</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setWorkoutDialogOpen(true)}><Dumbbell className="mr-2 size-4" />Log workout</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => addWater(250)}>💧 Add 250 ml water</DropdownMenuItem>
               </DropdownMenuContent>

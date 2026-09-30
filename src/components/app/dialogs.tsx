@@ -11,8 +11,8 @@ import type { MealType, WorkoutType } from "@/types";
 
 const nowTime = () => new Date().toTimeString().slice(0, 5);
 
-export function LogMealDialog({ foodId }: { foodId?: string }) {
-  const { mealDialogOpen, setMealDialogOpen, addMeal, selectedDate } = useStore();
+export function LogMealDialog() {
+  const { mealDialogOpen, setMealDialogOpen, addMeal, selectedDate, prefillFoodId: foodId } = useStore();
   const [fid, setFid] = useState(foodId ?? "");
   const [mealType, setMealType] = useState<MealType | "">("");
   const [servings, setServings] = useState("1");
