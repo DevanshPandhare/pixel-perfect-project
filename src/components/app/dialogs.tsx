@@ -28,9 +28,9 @@ export function LogMealDialog() {
 
   const save = () => {
     const e: Record<string, string> = {};
-    if (!food) e.food = "Choose a food";
-    if (!mealType) e.meal = "Pick a meal type";
-    if (!valid || s > 10) e.servings = "Enter a serving between 0.25 and 10";
+    if (!food) e["food"] = "Choose a food";
+    if (!mealType) e["meal"] = "Pick a meal type";
+    if (!valid || s > 10) e["servings"] = "Enter a serving between 0.25 and 10";
     setErrors(e);
     if (Object.keys(e).length || !food || !mealType) return;
     addMeal({ date: selectedDate, time: nowTime(), mealType, foodId: food.id, foodName: food.name, servings: s, servingUnit: food.servingUnit, calories: kcal, protein: prot });
@@ -52,7 +52,7 @@ export function LogMealDialog() {
               <SelectTrigger><SelectValue placeholder="Select a dish" /></SelectTrigger>
               <SelectContent>{FOODS.map((f) => <SelectItem key={f.id} value={f.id}>{f.name}</SelectItem>)}</SelectContent>
             </Select>
-            {errors.food && <p className="text-xs text-destructive">{errors.food}</p>}
+            {errors["food"] && <p className="text-xs text-destructive">{errors["food"]}</p>}
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="grid gap-1.5">
@@ -61,12 +61,12 @@ export function LogMealDialog() {
                 <SelectTrigger><SelectValue placeholder="Meal type" /></SelectTrigger>
                 <SelectContent>{(["Breakfast", "Lunch", "Dinner", "Snack"] as const).map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
               </Select>
-              {errors.meal && <p className="text-xs text-destructive">{errors.meal}</p>}
+              {errors["meal"] && <p className="text-xs text-destructive">{errors["meal"]}</p>}
             </div>
             <div className="grid gap-1.5">
               <Label>Servings {food && <span className="text-muted-foreground">({food.servingUnit})</span>}</Label>
               <Input type="number" step="0.25" min="0.25" value={servings} onChange={(e) => setServings(e.target.value)} />
-              {errors.servings && <p className="text-xs text-destructive">{errors.servings}</p>}
+              {errors["servings"] && <p className="text-xs text-destructive">{errors["servings"]}</p>}
             </div>
           </div>
           <div className="flex gap-2">
@@ -104,13 +104,13 @@ export function LogWorkoutDialog() {
 
   const save = () => {
     const e: Record<string, string> = {};
-    if (exercise.trim().length < 2) e.exercise = "Name the exercise";
+    if (exercise.trim().length < 2) e["exercise"] = "Name the exercise";
     const d = Number(duration);
-    if (!d || d < 1 || d > 300) e.duration = "1–300 minutes";
+    if (!d || d < 1 || d > 300) e["duration"] = "1–300 minutes";
     if (type === "Strength") {
-      if (!Number(sets) || Number(sets) < 1) e.sets = "Min 1";
-      if (!Number(reps) || Number(reps) < 1) e.reps = "Min 1";
-      if (weight && (Number(weight) < 0 || Number(weight) > 500)) e.weight = "0–500 kg";
+      if (!Number(sets) || Number(sets) < 1) e["sets"] = "Min 1";
+      if (!Number(reps) || Number(reps) < 1) e["reps"] = "Min 1";
+      if (weight && (Number(weight) < 0 || Number(weight) > 500)) e["weight"] = "0–500 kg";
     }
     setErrors(e);
     if (Object.keys(e).length) return;

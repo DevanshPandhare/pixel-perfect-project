@@ -35,7 +35,7 @@ export interface WorkoutLog {
   type: WorkoutType;
   sets?: number;
   reps?: number;
-  weightKg?: number;
+  weightKg?: number | undefined;
   durationMin: number;
   caloriesBurned: number;
 }
