@@ -45,9 +45,9 @@ function Coach() {
   const generate = () => {
     const a = Number(form.age), w = Number(form.weight), h = Number(form.height);
     const e: Record<string, string> = {};
-    if (!a || a < 14 || a > 90) e.age = "14–90";
-    if (!w || w < 30 || w > 250) e.weight = "30–250 kg";
-    if (!h || h < 120 || h > 230) e.height = "120–230 cm";
+    if (!a || a < 14 || a > 90) e["age"] = "14–90";
+    if (!w || w < 30 || w > 250) e["weight"] = "30–250 kg";
+    if (!h || h < 120 || h > 230) e["height"] = "120–230 cm";
     setErrors(e);
     if (Object.keys(e).length) return;
     setLoading(true); setPlan(null);

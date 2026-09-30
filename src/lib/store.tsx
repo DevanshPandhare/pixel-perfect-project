@@ -20,7 +20,7 @@ interface Store {
   setProfile: (p: UserProfile) => void;
   mealDialogOpen: boolean;
   setMealDialogOpen: (o: boolean) => void;
-  prefillFoodId?: string;
+  prefillFoodId: string | undefined;
   openMeal: (foodId?: string) => void;
   workoutDialogOpen: boolean;
   setWorkoutDialogOpen: (o: boolean) => void;
