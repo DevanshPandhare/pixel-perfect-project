@@ -1,3 +1,4 @@
+import type React from "react";
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { MealLog, WorkoutLog, Targets, UserProfile } from "@/types";
 import { INITIAL_MEALS, INITIAL_WORKOUTS, dayOffset } from "./mock-data";
@@ -26,7 +27,8 @@ interface Store {
   setWorkoutDialogOpen: (o: boolean) => void;
 }
 
-const Ctx = createContext<Store | null>(null);
+const g = globalThis as unknown as { __nutriStoreCtx?: React.Context<Store | null> };
+const Ctx = g.__nutriStoreCtx ?? (g.__nutriStoreCtx = createContext<Store | null>(null));
 const uid = () => Math.random().toString(36).slice(2, 10);
 
 export function StoreProvider({ children }: { children: ReactNode }) {
